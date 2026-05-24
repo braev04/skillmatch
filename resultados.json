@@ -1,0 +1,138 @@
+[
+  {
+    "candidato": "Juan",
+    "vacante": "Frontend",
+    "porcentaje": 100,
+    "coincidencias": [
+      "JS",
+      "HTML",
+      "CSS"
+    ],
+    "faltantes": []
+  },
+  {
+    "candidato": "Juan",
+    "vacante": "Backend",
+    "porcentaje": 0,
+    "coincidencias": [],
+    "faltantes": [
+      "Python",
+      "Node",
+      "SQL"
+    ]
+  },
+  {
+    "candidato": "Ana",
+    "vacante": "Frontend",
+    "porcentaje": 0,
+    "coincidencias": [],
+    "faltantes": [
+      "JS",
+      "HTML",
+      "CSS"
+    ]
+  },
+  {
+    "candidato": "Ana",
+    "vacante": "Backend",
+    "porcentaje": 66.66666666666666,
+    "coincidencias": [
+      "Python",
+      "SQL"
+    ],
+    "faltantes": [
+      "Node"
+    ]
+  },
+  {
+    "candidato": "Luis",
+    "vacante": "Frontend",
+    "porcentaje": 0,
+    "coincidencias": [],
+    "faltantes": [
+      "JS",
+      "HTML",
+      "CSS"
+    ]
+  },
+  {
+    "candidato": "Luis",
+    "vacante": "Backend",
+    "porcentaje": 0,
+    "coincidencias": [],
+    "faltantes": [
+      "Python",
+      "Node",
+      "SQL"
+    ]
+  },
+  {
+    "candidato": "Maria",
+    "vacante": "Frontend",
+    "porcentaje": 0,
+    "coincidencias": [],
+    "faltantes": [
+      "JS",
+      "HTML",
+      "CSS"
+    ]
+  },
+  {
+    "candidato": "Maria",
+    "vacante": "Backend",
+    "porcentaje": 33.33333333333333,
+    "coincidencias": [
+      "SQL"
+    ],
+    "faltantes": [
+      "Python",
+      "Node"
+    ]
+  },
+  {
+    "candidato": "Pedro",
+    "vacante": "Frontend",
+    "porcentaje": 0,
+    "coincidencias": [],
+    "faltantes": [
+      "JS",
+      "HTML",
+      "CSS"
+    ]
+  },
+  {
+    "candidato": "Pedro",
+    "vacante": "Backend",
+    "porcentaje": 33.33333333333333,
+    "coincidencias": [
+      "Node"
+    ],
+    "faltantes": [
+      "Python",
+      "SQL"
+    ]
+  },
+  {
+    "candidato": "Sofia",
+    "vacante": "Frontend",
+    "porcentaje": 33.33333333333333,
+    "coincidencias": [
+      "CSS"
+    ],
+    "faltantes": [
+      "JS",
+      "HTML"
+    ]
+  },
+  {
+    "candidato": "Sofia",
+    "vacante": "Backend",
+    "porcentaje": 0,
+    "coincidencias": [],
+    "faltantes": [
+      "Python",
+      "Node",
+      "SQL"
+    ]
+  }
+]
