@@ -59,19 +59,25 @@ function analizarCompatibilidad(candidato, vacante) {
   };
 }
 // Analizar compatibilidad para cada vacante
-const resultado = analizarCompatibilidad(candidato, vacante);
+const resultados = [];
 
-resultados.push({
-  candidato: candidato.nombre, // 🔥 AQUÍ ESTÁ LA SOLUCIÓN
-  vacante: resultado.nombre,
-  porcentaje: resultado.porcentaje,
-  coincidencias: resultado.coincidencias,
-  faltantes: resultado.faltantes
+candidatos.forEach(candidato => {
+  vacantes.forEach(vacante => {
+    const resultado = analizarCompatibilidad(candidato, vacante);
+
+    resultados.push({
+      candidato: candidato.nombre,
+      vacante: resultado.nombre,
+      porcentaje: resultado.porcentaje,
+      coincidencias: resultado.coincidencias,
+      faltantes: resultado.faltantes
+    });
+  });
 });
 
-const mejorVacante = resultados.reduce((mejor, actual) =>
-  actual.porcentaje > mejor.porcentaje ? actual : mejor
-);
+const mejorVacante = resultados.reduce((mejor, actual) => {
+  return actual.porcentaje > mejor.porcentaje ? actual : mejor;
+}, resultados[0]);
 
 //Callback
 function mostrarResultado(nombre, callback) {
