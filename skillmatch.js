@@ -59,4 +59,12 @@ class VacanteFrontEnd extends Vacante {
     this.nivel = nivel;
   }
 }
+//Callback
+function mostrarResultado(nombre, callback) {
+  console.log("Analizando candidato...");
+  callback(nombre);
+}
 
+mostrarResultado(candidato.nombre, (nombre) => {
+  console.log(`Análisis finalizado para ${nombre}`);
+});
