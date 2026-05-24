@@ -15,6 +15,23 @@ const vacantes = [
 
 const resultados = [];
 
+// 🧱 POO (REQUERIDO)
+
+
+class Vaga {
+  constructor(nombre, habilidades) {
+    this.nombre = nombre;
+    this.habilidades = habilidades;
+  }
+}
+
+class VagaFrontEnd extends Vaga {
+  constructor(nombre, habilidades, framework) {
+    super(nombre, habilidades);
+    this.framework = framework;
+  }
+}
+
 // Función para analizar compatibilidad
 function analizarCompatibilidad(candidato, vacante) {
   const coincidencias = candidato.habilidades.filter(h =>
@@ -29,11 +46,27 @@ function analizarCompatibilidad(candidato, vacante) {
     (coincidencias.length / vacante.habilidades.length) * 100;
 
   return {
-    nombre: vacante.nombre,
-    porcentaje,
-    coincidencias,
-    faltantes
-  };
+  nombre: vacante.nombre,
+  porcentaje,
+  coincidencias,
+  faltantes,
+  clasificacion: clasificar(porcentaje),
+  recomendacion: recomendar(faltantes)
+};
+}
+// 📊 CLASIFICACIÓN
+
+
+function clasificar(porcentaje) {
+  if (porcentaje >= 80) return "Alta";
+  if (porcentaje >= 50) return "Media";
+  return "Baja";
+}
+// 📚 RECOMENDACIÓN
+
+function recomendar(faltantes) {
+  if (faltantes.length === 0) return "Listo para aplicar 🚀";
+  return `Aprender: ${faltantes.join(", ")}`;
 }
 
 // RECORRER TODOS LOS CANDIDATOS Y VACANTES
@@ -61,6 +94,15 @@ function mostrarResultado(nombre, callback) {
   console.log("Analizando candidato...");
   callback(nombre);
 }
+// ==============================
+// 🔒 CLOSURE
+// ==============================
+
+function crearAnalizador(vacante) {
+  return function(candidato) {
+    return analizarCompatibilidad(candidato, vacante);
+  };
+}
 
 // Mostrar resultados correctamente
 candidatos.forEach(c => {
@@ -68,7 +110,18 @@ candidatos.forEach(c => {
     console.log(`Análisis finalizado para ${nombre}`);
   });
 });
+// ==============================
+// 🌐 SIMULACIÓN DE SERVIDOR
+// ==============================
 
+function buscarVagasSimuladas() {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      console.log("📡 Cargando vacantes...");
+      resolve(vacantes);
+    }, 1000);
+  });
+}
 // Mostrar resultados finales
 console.log("\nResultados:");
 console.log(resultados);
@@ -185,3 +238,13 @@ topCandidatosPorVacante(resultados, vacantes);
 rankingGlobal(resultados);
 guardarResultados(resultados);
 ejecutarAnalisisAsync(candidatos);
+// ==============================
+// ⚡ INICIO ASÍNCRONO
+// ==============================
+
+async function iniciarSistema() {
+  const vacs = await buscarVagasSimuladas();
+  console.log("✅ Vacantes listas:", vacs.map(v => v.nombre));
+}
+
+iniciarSistema();
