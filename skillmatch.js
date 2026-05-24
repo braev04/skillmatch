@@ -19,6 +19,7 @@ const vacantes = [
   }
 ];
 // Función De compatibilidad
+
 function analizarCompatibilidad(candidato, vacante) {
   const coincidencias = vacante.habilidades.filter(h =>
     candidato.habilidades.includes(h)
@@ -38,6 +39,7 @@ function analizarCompatibilidad(candidato, vacante) {
   };
 }
 // Analizar compatibilidad para cada vacante
+
 const resultados = vacantes.map(v =>
   analizarCompatibilidad(candidato, v)
 );
@@ -46,6 +48,7 @@ const mejorVacante = resultados.reduce((mejor, actual) =>
   actual.porcentaje > mejor.porcentaje ? actual : mejor
 );
 // POO+HERENCIA
+
 class Vacante {
   constructor(nombre, habilidades) {
     this.nombre = nombre;
@@ -60,6 +63,7 @@ class VacanteFrontEnd extends Vacante {
   }
 }
 //Callback
+
 function mostrarResultado(nombre, callback) {
   console.log("Analizando candidato...");
   callback(nombre);
@@ -69,6 +73,7 @@ mostrarResultado(candidato.nombre, (nombre) => {
   console.log(`Análisis finalizado para ${nombre}`);
 });
 //Closure Con Contador
+
 function crearContador() {
   let contador = 0;
   return function() {
@@ -79,6 +84,7 @@ function crearContador() {
 const contadorVacantes = crearContador();
 console.log(contadorVacantes());
 console.log(contadorVacantes());
+
 // Promesas+Async/Await
 function analizarVacanteAsync(vacante) {
   return new Promise((resolve) => {
@@ -96,3 +102,10 @@ async function iniciarSistema() {
 }
 
 iniciarSistema();
+
+// FInal 
+console.log("Mejor vacante:");
+console.log(mejorVacante);
+
+console.log("Recomendación:");
+console.log(`Debes aprender: ${mejorVacante.faltantes.join(", ")}`);
