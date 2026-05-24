@@ -68,3 +68,14 @@ function mostrarResultado(nombre, callback) {
 mostrarResultado(candidato.nombre, (nombre) => {
   console.log(`Análisis finalizado para ${nombre}`);
 });
+//Closure Con Contador
+function crearContador() {
+  let contador = 0;
+  return function() {
+    contador++;
+    return contador;
+  };
+}
+const contadorVacantes = crearContador();
+console.log(contadorVacantes());
+console.log(contadorVacantes());
