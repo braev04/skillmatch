@@ -1,55 +1,32 @@
-// Datos de ejemplo
 const candidatos = [
-  { nombre: "Brayan", habilidades: ["HTML", "CSS", "JavaScript"] },
-  { nombre: "Ana", habilidades: ["Python", "SQL", "Django"] },
-  { nombre: "Carlos", habilidades: ["Java", "Spring"] },
-  { nombre: "Lucia", habilidades: ["React", "CSS", "HTML"] },
-  { nombre: "Mateo", habilidades: ["Node", "Express", "MongoDB"] },
-  { nombre: "Sofia", habilidades: ["JavaScript", "React", "Node"] },
-  { nombre: "Luis", habilidades: ["C#", ".NET"] },
-  { nombre: "Elena", habilidades: ["HTML", "CSS"] }
+  { nombre: "Juan", habilidades: ["JS", "HTML", "CSS"] },
+  { nombre: "Ana", habilidades: ["Python", "SQL", "Java"] },
+  { nombre: "Luis", habilidades: ["Java"] },
+  { nombre: "Maria", habilidades: ["SQL"] },
+  { nombre: "Pedro", habilidades: ["Node"] },
+  { nombre: "Sofia", habilidades: ["CSS"] },
+
 ];
 
 const vacantes = [
-  {
-    nombre: "Frontend Jr",
-    habilidades: ["HTML", "CSS", "JavaScript"]
-  },
-  {
-    nombre: "Frontend React",
-    habilidades: ["HTML", "CSS", "JavaScript", "React"]
-  },
-  {
-    nombre: "Backend Node",
-    habilidades: ["Node", "Express", "MongoDB"]
-  }
+  { nombre: "Frontend", habilidades: ["JS", "HTML", "CSS"] },
+  { nombre: "Backend", habilidades: ["Python", "Node", "SQL"] }
 ];
-// POO+HERENCIA
-class Vacante {
-  constructor(nombre, habilidades) {
-    this.nombre = nombre;
-    this.habilidades = habilidades;
-  }
-}
 
-class VacanteFrontEnd extends Vacante {
-  constructor(nombre, habilidades, nivel) {
-    super(nombre, habilidades);
-    this.nivel = nivel;
-  }
-}
-// Función De compatibilidad
+const resultados = [];
 
+// Función para analizar compatibilidad
 function analizarCompatibilidad(candidato, vacante) {
-  const coincidencias = vacante.habilidades.filter(h =>
-    candidato.habilidades.includes(h)
+  const coincidencias = candidato.habilidades.filter(h =>
+    vacante.habilidades.includes(h)
   );
 
   const faltantes = vacante.habilidades.filter(h =>
     !candidato.habilidades.includes(h)
   );
 
-  const porcentaje = (coincidencias.length / vacante.habilidades.length) * 100;
+  const porcentaje =
+    (coincidencias.length / vacante.habilidades.length) * 100;
 
   return {
     nombre: vacante.nombre,
@@ -58,15 +35,14 @@ function analizarCompatibilidad(candidato, vacante) {
     faltantes
   };
 }
-// Analizar compatibilidad para cada vacante
-const resultados = [];
 
+// RECORRER TODOS LOS CANDIDATOS Y VACANTES
 candidatos.forEach(candidato => {
   vacantes.forEach(vacante => {
     const resultado = analizarCompatibilidad(candidato, vacante);
 
     resultados.push({
-      candidato: candidato.nombre, 
+      candidato: candidato.nombre,
       vacante: resultado.nombre,
       porcentaje: resultado.porcentaje,
       coincidencias: resultado.coincidencias,
@@ -75,62 +51,27 @@ candidatos.forEach(candidato => {
   });
 });
 
-const mejorVacante = resultados.reduce((mejor, actual) => {
-  return actual.porcentaje > mejor.porcentaje ? actual : mejor;
-}, resultados[0]);
+// Mejor resultado global
+const mejorVacante = resultados.reduce((mejor, actual) =>
+  actual.porcentaje > mejor.porcentaje ? actual : mejor
+);
 
-//Callback
+// Callback
 function mostrarResultado(nombre, callback) {
   console.log("Analizando candidato...");
   callback(nombre);
 }
 
+// Mostrar resultados correctamente
 candidatos.forEach(c => {
-  mostrarResultado(c.nombre, (nombre) => {
+  mostrarResultado(c.nombre, nombre => {
     console.log(`Análisis finalizado para ${nombre}`);
   });
 });
-//Closure Con Contador
 
-function crearContador() {
-  let total = 0;
+// Mostrar resultados finales
+console.log("\nResultados:");
+console.log(resultados);
 
-  return function () {
-    total++;
-    return total;
-  };
-}
-
-const contador = crearContador();
-contador();
-contador();
-// Promesas+Async/Await
-function buscarVagasSimuladas(vagas) {
-  return new Promise(resolve => {
-    setTimeout(() => resolve(vagas), 1000);
-  });
-}
-
-async function iniciarSistema() {
-  const datos = await buscarVagasSimuladas(vacantes);
-
- const resultados = [];
-
-candidatos.forEach(candidato => {
-  vacantes.forEach(vacante => {
-    const resultado = analizarCompatibilidad(candidato, vacante);
-    resultados.push(resultado);
-  });
-});
-
-  console.log(resultados);
-}
-
-iniciarSistema();
-
-// FInal 
-console.log("Mejor vacante:");
+console.log("\nMejor combinación:");
 console.log(mejorVacante);
-
-console.log("Recomendación:");
-console.log(`Debes aprender: ${mejorVacante.faltantes.join(", ")}`);
