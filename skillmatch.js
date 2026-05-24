@@ -37,3 +37,11 @@ function analizarCompatibilidad(candidato, vacante) {
     faltantes
   };
 }
+// Analizar compatibilidad para cada vacante
+const resultados = vacantes.map(v =>
+  analizarCompatibilidad(candidato, v)
+);
+
+const mejorVacante = resultados.reduce((mejor, actual) =>
+  actual.porcentaje > mejor.porcentaje ? actual : mejor
+);
