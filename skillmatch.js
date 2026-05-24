@@ -59,16 +59,14 @@ function analizarCompatibilidad(candidato, vacante) {
   };
 }
 // Analizar compatibilidad para cada vacante
-const resultados = [];
+const resultado = analizarCompatibilidad(candidato, vacante);
 
-candidatos.forEach(candidato => {
-  vacantes.forEach(vacante => {
-    const resultado = analizarCompatibilidad(candidato, vacante);
-    resultados.push({
-      candidato: candidato.nombre,
-      ...resultado
-    });
-  });
+resultados.push({
+  candidato: candidato.nombre, // 🔥 AQUÍ ESTÁ LA SOLUCIÓN
+  vacante: resultado.nombre,
+  porcentaje: resultado.porcentaje,
+  coincidencias: resultado.coincidencias,
+  faltantes: resultado.faltantes
 });
 
 const mejorVacante = resultados.reduce((mejor, actual) =>
@@ -110,11 +108,16 @@ function buscarVagasSimuladas(vagas) {
 async function iniciarSistema() {
   const datos = await buscarVagasSimuladas(vacantes);
 
-  const nuevosResultados = datos.map(v =>
-    analizarCompatibilidad(candidato, v)
-  );
+ const resultados = [];
 
-  console.log(nuevosResultados);
+candidatos.forEach(candidato => {
+  vacantes.forEach(vacante => {
+    const resultado = analizarCompatibilidad(candidato, vacante);
+    resultados.push(resultado);
+  });
+});
+
+  console.log(resultados);
 }
 
 iniciarSistema();
