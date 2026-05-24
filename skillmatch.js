@@ -45,3 +45,18 @@ const resultados = vacantes.map(v =>
 const mejorVacante = resultados.reduce((mejor, actual) =>
   actual.porcentaje > mejor.porcentaje ? actual : mejor
 );
+// POO+HERENCIA
+class Vacante {
+  constructor(nombre, habilidades) {
+    this.nombre = nombre;
+    this.habilidades = habilidades;
+  }
+}
+
+class VacanteFrontEnd extends Vacante {
+  constructor(nombre, habilidades, nivel) {
+    super(nombre, habilidades);
+    this.nivel = nivel;
+  }
+}
+
