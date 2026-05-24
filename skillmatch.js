@@ -18,6 +18,20 @@ const vacantes = [
     habilidades: ["Node", "Express", "MongoDB"]
   }
 ];
+// POO+HERENCIA
+class Vacante {
+  constructor(nombre, habilidades) {
+    this.nombre = nombre;
+    this.habilidades = habilidades;
+  }
+}
+
+class VacanteFrontEnd extends Vacante {
+  constructor(nombre, habilidades, nivel) {
+    super(nombre, habilidades);
+    this.nivel = nivel;
+  }
+}
 // Función De compatibilidad
 
 function analizarCompatibilidad(candidato, vacante) {
@@ -46,20 +60,7 @@ const resultados = vacantes.map(v =>
 const mejorVacante = resultados.reduce((mejor, actual) =>
   actual.porcentaje > mejor.porcentaje ? actual : mejor
 );
-// POO+HERENCIA
-class Vacante {
-  constructor(nombre, habilidades) {
-    this.nombre = nombre;
-    this.habilidades = habilidades;
-  }
-}
 
-class VacanteFrontEnd extends Vacante {
-  constructor(nombre, habilidades, nivel) {
-    super(nombre, habilidades);
-    this.nivel = nivel;
-  }
-}
 //Callback
 function mostrarResultado(nombre, callback) {
   console.log("Analizando candidato...");
@@ -93,11 +94,11 @@ function buscarVagasSimuladas(vagas) {
 async function iniciarSistema() {
   const datos = await buscarVagasSimuladas(vacantes);
 
-  const resultados = datos.map(v =>
+  const nuevosResultados = datos.map(v =>
     analizarCompatibilidad(candidato, v)
   );
 
-  console.log(resultados);
+  console.log(nuevosResultados);
 }
 
 iniciarSistema();
