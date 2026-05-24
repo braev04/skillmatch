@@ -79,3 +79,20 @@ function crearContador() {
 const contadorVacantes = crearContador();
 console.log(contadorVacantes());
 console.log(contadorVacantes());
+// Promesas+Async/Await
+function analizarVacanteAsync(vacante) {
+  return new Promise((resolve) => {
+    setTimeout(() => resolve(vagas), 1000);
+  });
+}
+async function iniciarSistema() {
+  const datos = await buscarVagasSimuladas(vacantes);
+
+  const resultados = datos.map(v =>
+    analizarCompatibilidad(candidato, v)
+  );
+
+  console.log(resultados);
+}
+
+iniciarSistema();
