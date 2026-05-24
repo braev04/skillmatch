@@ -1,8 +1,14 @@
 // Datos de ejemplo
-const candidato = {
-  nombre: "Brayan",
-  habilidades: ["HTML", "CSS", "JavaScript"]
-};
+const candidatos = [
+  { nombre: "Brayan", habilidades: ["HTML", "CSS", "JavaScript"] },
+  { nombre: "Ana", habilidades: ["Python", "SQL", "Django"] },
+  { nombre: "Carlos", habilidades: ["Java", "Spring"] },
+  { nombre: "Lucia", habilidades: ["React", "CSS", "HTML"] },
+  { nombre: "Mateo", habilidades: ["Node", "Express", "MongoDB"] },
+  { nombre: "Sofia", habilidades: ["JavaScript", "React", "Node"] },
+  { nombre: "Luis", habilidades: ["C#", ".NET"] },
+  { nombre: "Elena", habilidades: ["HTML", "CSS"] }
+];
 
 const vacantes = [
   {
@@ -53,9 +59,17 @@ function analizarCompatibilidad(candidato, vacante) {
   };
 }
 // Analizar compatibilidad para cada vacante
-const resultados = vacantes.map(v =>
-  analizarCompatibilidad(candidato, v)
-);
+const resultados = [];
+
+candidatos.forEach(candidato => {
+  vacantes.forEach(vacante => {
+    const resultado = analizarCompatibilidad(candidato, vacante);
+    resultados.push({
+      candidato: candidato.nombre,
+      ...resultado
+    });
+  });
+});
 
 const mejorVacante = resultados.reduce((mejor, actual) =>
   actual.porcentaje > mejor.porcentaje ? actual : mejor
@@ -67,8 +81,10 @@ function mostrarResultado(nombre, callback) {
   callback(nombre);
 }
 
-mostrarResultado(candidato.nombre, (nombre) => {
-  console.log(`Análisis finalizado para ${nombre}`);
+candidatos.forEach(c => {
+  mostrarResultado(c.nombre, (nombre) => {
+    console.log(`Análisis finalizado para ${nombre}`);
+  });
 });
 //Closure Con Contador
 
