@@ -1,142 +1,132 @@
-# 🧠 SkillMatch
+🧠 SkillMatch
 
 Motor de análise de compatibilidade entre candidatos e vagas baseado em habilidades técnicas.
 
-Este projeto simula, em escala reduzida, o funcionamento de sistemas de matching utilizados em plataformas de recrutamento, com foco em clareza de lógica, extensibilidade e organização de código.
+Este projeto simula, em escala reduzida, o funcionamento de sistemas de matching utilizados em plataformas de recrutamento, incorporando conceitos fundamentais de engenharia de software e JavaScript moderno.
 
----
+📌 Contexto
 
-## 📌 Contexto
+Em processos de recrutamento técnico, um dos principais desafios é avaliar rapidamente o nível de aderência entre candidatos e requisitos de uma vaga.
 
-Em processos de recrutamento, um dos principais desafios é avaliar rapidamente o nível de aderência entre candidatos e requisitos técnicos de uma vaga.
+O SkillMatch aborda esse problema através de um modelo determinístico e extensível que permite:
 
-O **SkillMatch** resolve esse problema através de um modelo determinístico simples, porém eficaz, que permite:
+Quantificar compatibilidade técnica
+Identificar lacunas de habilidades (skill gaps)
+Gerar rankings comparativos
+Sugerir trilhas de aprendizado
+🧩 Abordagem
 
-- Quantificar compatibilidade
-- Identificar gaps de habilidades
-- Gerar rankings comparativos
+O sistema utiliza um modelo baseado em interseção de conjuntos entre:
 
----
+habilidades do candidato
+habilidades exigidas pela vaga
 
-## 🧩 Abordagem
+A partir disso, são derivados:
 
-O sistema utiliza um modelo baseado em interseção de conjuntos para calcular compatibilidade entre:
-
-- `habilidades do candidato`
-- `habilidades exigidas pela vaga`
-
-A partir disso, são gerados:
-
-- Score percentual
-- Lista de habilidades coincidentes
-- Lista de habilidades faltantes
-
----
-
-## 🧠 Regra de Negócio
-
-
+Score percentual de compatibilidade
+Lista de habilidades coincidentes
+Lista de habilidades faltantes
+Classificação qualitativa (Alta, Média, Baixa)
+Recomendação de aprendizado
+🧠 Regra de Negócio
 score = (|interseção| / |habilidades da vaga|) * 100
+Classificação
+Alta: ≥ 80%
+Média: 50% – 79%
+Baixa: < 50%
+Recomendação
+Sem faltantes → candidato apto
+Com faltantes → sugestão direta de estudo
+⚙️ Funcionalidades
+Core
+Avaliação candidato × vaga
+Cálculo de compatibilidade
+Identificação de habilidades faltantes
+Classificação automática
+Análise
+Ranking por vaga (Top 3)
+Ranking global (melhores matches)
+Melhor combinação geral
+Engenharia
+Programação Orientada a Objetos (POO)
+Herança (classe VagaFrontEnd)
+Uso de this em métodos
+Closure para encapsulamento de contexto
+Callback para processamento
+Promise + async/await (simulação de servidor)
+Infraestrutura
+Validação de dados
+Simulação de carregamento assíncrono
+Persistência em JSON
+Output
+Logs estruturados
+Resultados detalhados e legíveis
+Exportação para consumo externo
+🏗️ Arquitetura
 
-
-Essa abordagem garante:
-
-- 📊 Comparabilidade entre candidatos
-- ⚖️ Neutralidade (todas as habilidades têm peso igual)
-- 🔄 Facilidade de evolução (ex: introdução de pesos)
-
----
-
-## ⚙️ Funcionalidades
-
-### Core
-- Avaliação candidato × vaga
-- Cálculo de score de compatibilidade
-- Identificação de gaps técnicos
-
-### Análise
-- Ranking por vaga (Top N candidatos)
-- Ranking global (melhores matches)
-
-### Infraestrutura
-- Validação de dados de entrada
-- Persistência em JSON
-- Simulação assíncrona (processamento)
-
-### Output
-- Logs estruturados e legíveis
-- Exportação para consumo externo
-
----
-
-## 🏗️ Arquitetura
-
-Embora implementado em um único arquivo (escopo educacional), o projeto segue separação lógica de responsabilidades:
-
-
-Camadas conceituais:
+Mesmo sendo um projeto de arquivo único (escopo educacional), segue princípios de separação de responsabilidades:
 
 [ Entrada de Dados ]
-↓
+        ↓
 [ Validação ]
-↓
-[ Motor de Matching ]
-↓
+        ↓
+[ Motor de Matching (POO) ]
+        ↓
 [ Processamento / Ranking ]
-↓
+        ↓
 [ Output + Persistência ]
+🔎 Componentes
+🧠 Matching Engine
 
+Responsável pela lógica de compatibilidade (classe Vaga)
 
-### 🔎 Componentes
+🧱 POO Layer
+Classe base: Vaga
+Classe derivada: VagaFrontEnd
+Uso de herança e encapsulamento
+🔒 Closure Layer
 
-- **Matching Engine**
-  - Responsável pela lógica de compatibilidade
+Encapsulamento de lógica por vaga (crearAnalizador)
 
-- **Aggregator**
-  - Consolida resultados e rankings
+🔄 Async Layer
 
-- **Validator**
-  - Garante integridade mínima dos dados
+Simulação de carregamento de dados via Promise + async/await
 
-- **Persistence Layer**
-  - Exporta resultados para JSON
+📊 Aggregator
 
-- **Async Simulation Layer**
-  - Simula processamento assíncrono (I/O-like)
+Responsável por rankings e consolidação de resultados
 
----
+💾 Persistence Layer
 
-## ▶️ Execução
+Exportação de dados para arquivo JSON
 
-### Requisitos
-
-- Node.js (>= 14)
-
-### Rodar aplicação
-
-```bash
+▶️ Execução
+Requisitos
+Node.js (>= 14)
+Rodar aplicação
 node skillmatch.js
 📊 Exemplo de Output
-Candidato: Carlos
-Vaga: Backend
-Compatibilidade: 66.67%
-Coincidências: Python, SQL
-Faltantes: Node
+Candidato: Juan
+Vacante: Frontend
+Compatibilidade: 100.00% (Alta)
+Coincidências: JS, HTML, CSS
+Faltantes: Nenhuma
+Recomendação: Listo para aplicar 🚀
 📁 Persistência
 
 Os resultados são exportados automaticamente para:
 
 /resultados.json
 
-Esse arquivo pode ser reutilizado para:
+Possíveis usos:
 
 Integração com front-end
-Processos analíticos
-Armazenamento histórico
+Análise de dados
+Histórico de execuções
 ⚠️ Decisões de Design
 1. Modelo determinístico
 
-Optou-se por um algoritmo simples para priorizar:
+Priorização de:
 
 Clareza
 Previsibilidade
@@ -145,46 +135,50 @@ Facilidade de manutenção
 
 Todas as habilidades possuem o mesmo impacto no score.
 
-Trade-off: simplicidade vs. realismo
+Trade-off: simplicidade vs realismo
 
-3. Processamento síncrono com simulação async
+3. Simulação assíncrona
 
-A aplicação é síncrona por natureza, mas inclui uma camada assíncrona para demonstrar domínio de async/await.
+Uso de Promise + async/await para simular ambiente real de I/O
+
+4. Uso de POO
+
+Estrutura orientada a objetos para facilitar escalabilidade
 
 🚧 Limitações
 Não considera nível de proficiência
-Não há pesos diferenciados por habilidade
-Não utiliza base de dados
+Não utiliza pesos por habilidade
+Não há persistência em banco de dados
 Interface limitada ao terminal
-🚀 Evolução Natural do Projeto
-
-Este projeto foi estruturado pensando em evolução incremental. Próximos passos naturais:
-
+🚀 Evolução Natural
 🔹 Backend
-API REST (Express)
-Persistência real (MongoDB/PostgreSQL)
-Camadas separadas (Controller / Service / Repository)
+API REST (Node + Express)
+Banco de dados (MongoDB/PostgreSQL)
+Arquitetura em camadas
 🔹 Inteligência
-Sistema de pesos por habilidade
+Peso por habilidade
 Score baseado em relevância
-Recomendação automática de candidatos
-🔹 Interface
-Dashboard web
+Sistema de recomendação avançado
+🔹 Frontend
+Dashboard interativo
 Visualização de rankings
 Input dinâmico de dados
 🎯 Objetivo Técnico
 
-Este projeto demonstra capacidade de:
+Este projeto demonstra domínio em:
 
-Modelagem de problema real
-Estruturação de lógica de negócio
-Uso eficiente de arrays (filter, reduce)
-Controle de fluxo
-Programação assíncrona
-Organização e escalabilidade de código
+Lógica de programação
+Estruturas de dados (arrays, objetos)
+Métodos de array (filter, reduce, etc.)
+Programação Orientada a Objetos
+Herança e uso de this
+Closures e callbacks
+Programação assíncrona (Promise, async/await)
+Organização de código
+Pensamento arquitetural
 👨‍💻 Autor
 
-Projeto desenvolvido como parte de prática intencional em desenvolvimento backend, com foco em evolução técnica e preparação para cenários reais de mercado.
+Projeto desenvolvido como prática intencional de desenvolvimento backend, com foco em evolução técnica, organização de código e preparação para cenários reais de mercado.
 
 📄 Licença
 
