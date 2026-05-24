@@ -66,7 +66,7 @@ candidatos.forEach(candidato => {
     const resultado = analizarCompatibilidad(candidato, vacante);
 
     resultados.push({
-      candidato: candidato.nombre,
+      candidato: candidato.nombre, 
       vacante: resultado.nombre,
       porcentaje: resultado.porcentaje,
       coincidencias: resultado.coincidencias,
