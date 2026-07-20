@@ -1,4 +1,4 @@
-import { cargarVagas } from "./data.js";
+import { cargarVagas } from "./dados.js";
 import { calcularMatch } from "./motor.js";
 import { renderCards } from "./ui.js";
 import { guardarPerfil } from "./storage.js";

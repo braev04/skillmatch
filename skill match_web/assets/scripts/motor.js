@@ -24,3 +24,8 @@ export function calcularMatch(perfil, vaga) {
     faltantes
   };
 }
+function clasificar(compat) {
+  if (compat >= 70) return "Alta";
+  if (compat >= 40) return "Media";
+  return "Baja";
+}

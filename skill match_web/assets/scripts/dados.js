@@ -22,3 +22,10 @@ export async function cargarVagas() {
     estado.textContent = "Error al cargar";
   }
 }
+return {
+  ...vaga,
+  compat,
+  encontradas,
+  faltantes,
+  nivel: clasificar(compat)
+};
