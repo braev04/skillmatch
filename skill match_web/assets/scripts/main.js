@@ -24,3 +24,12 @@ document.getElementById("formPerfil")
 
   renderCards(resultados);
 });
+const contador = crearContador();
+console.log(contador());
+const perfilGuardado = cargarPerfil();
+
+if (perfilGuardado) {
+  nombre.value = perfilGuardado.nombre;
+  area.value = perfilGuardado.area;
+  skills.value = perfilGuardado.skills.join(", ");
+}
