@@ -1,11 +1,3 @@
-export class Vaga {
-  constructor(empresa, cargo, skills) {
-    this.empresa = empresa;
-    this.cargo = cargo;
-    this.skills = skills;
-  }
-}
-
 export function calcularMatch(perfil, vaga) {
   const encontradas = vaga.skills.filter(skill =>
     perfil.skills.includes(skill)
@@ -21,30 +13,24 @@ export function calcularMatch(perfil, vaga) {
     ...vaga,
     compat,
     encontradas,
-    faltantes
+    faltantes,
+    nivel: clasificar(compat)
   };
 }
-function clasificar(compat) {
-  if (compat >= 70) return "Alta";
-  if (compat >= 40) return "Media";
+
+// ✅ niveles (importante para nota)
+function clasificar(valor) {
+  if (valor >= 70) return "Alta";
+  if (valor >= 40) return "Media";
   return "Baja";
 }
-export class VagaTech extends Vaga {
-  constructor(empresa, cargo, skills, nivel) {
-    super(empresa, cargo, skills);
-    this.nivel = nivel;
-  }
 
-  descripcion() {
-    return `${this.cargo} - ${this.nivel}`;
-  }
-}
+// ✅ closure
 export function crearContador() {
-  let count = 0;
+  let contador = 0;
 
   return function () {
-    count++;
-    return count;
+    contador++;
+    return contador;
   };
 }
-if (!vagas) return;

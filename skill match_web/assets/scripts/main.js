@@ -1,11 +1,11 @@
 import { cargarVagas } from "./dados.js";
-import { calcularMatch } from "./motor.js";
+import { calcularMatch, crearContador } from "./motor.js";
 import { renderCards } from "./ui.js";
-import { guardarPerfil } from "./storage.js";
+import { guardarPerfil, cargarPerfil } from "./storage.js";
 
-document.getElementById("formPerfil")
-.addEventListener("submit", async (e) => {
+const form = document.getElementById("formPerfil");
 
+form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   const perfil = {
@@ -14,26 +14,27 @@ document.getElementById("formPerfil")
     skills: skills.value.split(",").map(s => s.trim())
   };
 
+  // ✅ validación correcta
+  if (!perfil.nombre || !perfil.skills.length) {
+    alert("Completa todos los campos");
+    return;
+  }
+
   guardarPerfil(perfil);
 
   const vagas = await cargarVagas();
+  if (!vagas) return;
 
-  const resultados = vagas.map(v =>
-    calcularMatch(perfil, v)
-  );
+  const resultados = vagas.map(v => calcularMatch(perfil, v));
 
   renderCards(resultados);
 });
+
+// ✅ closure
 const contador = crearContador();
 console.log(contador());
-const perfilGuardado = cargarPerfil();
+const mejor = resultados.reduce((a, b) =>
+  a.compat > b.compat ? a : b
+);
 
-if (perfilGuardado) {
-  nombre.value = perfilGuardado.nombre;
-  area.value = perfilGuardado.area;
-  skills.value = perfilGuardado.skills.join(", ");
-}
-if (!perfil.nombre || !perfil.skills.length) {
-  alert("Completa todos los campos");
-  return;
-}
+console.log("Mejor opción:", mejor);

@@ -10,13 +10,15 @@ export function renderCards(resultados) {
       <h3>${r.cargo}</h3>
       <p>${r.empresa}</p>
       <p>Match: ${r.compat.toFixed(0)}%</p>
-      <p>Faltantes: ${r.faltantes.join(", ")}</p>
+      <p>Nivel: ${r.nivel}</p>
     `;
+
+    if (r.faltantes.length) {
+      card.innerHTML += `
+        <p>Te falta aprender: ${r.faltantes.join(", ")}</p>
+      `;
+    }
 
     container.appendChild(card);
   });
-}
-renderCards(resultados, mejor);
-if (r.faltantes.length) {
-  card.innerHTML += `<p>Aprender: ${r.faltantes.join(", ")}</p>`;
 }
