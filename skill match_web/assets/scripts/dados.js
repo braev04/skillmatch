@@ -4,7 +4,7 @@ export async function cargarVagas() {
   try {
     estado.textContent = "Cargando...";
 
-    const res = await fetch("assets/dados/vagas.json");
+    const res = await fetch("./assets/dados/vagas.json");
 
     if (!res.ok) throw new Error("Error");
 

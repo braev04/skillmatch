@@ -11,6 +11,7 @@ export function renderCards(resultados) {
       <p>${r.empresa}</p>
       <p>Match: ${r.compat.toFixed(0)}%</p>
       <p>Nivel: ${r.nivel}</p>
+      <p>${r.recomendacion || ""}</p>
     `;
 
     if (r.faltantes.length) {

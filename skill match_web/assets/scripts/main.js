@@ -28,14 +28,23 @@ form.addEventListener("submit", async (e) => {
 
   renderCards(resultados);
 
-  // 🔥 mejor match
+  //  mejor match
   const mejor = resultados.reduce((a, b) =>
     a.compat > b.compat ? a : b
   );
 
   console.log("🏆 Mejor:", mejor);
 });
+// recomendaciones
+resultados.forEach(r => {
+  if (r.nivel === "Baja") {
+    r.recomendacion = "Aprender: " + r.faltantes.join(", ");
+  } else {
+    r.recomendacion = "Buen match";
+  }
+});
 
-// 🔥 closure usado
+// closure usado
 const contador = crearContador();
-console.log(contador());
+console.log("Clicks:", contador());
+console.log("Clicks:", contador());
