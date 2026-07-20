@@ -17,3 +17,6 @@ export function renderCards(resultados) {
   });
 }
 renderCards(resultados, mejor);
+if (r.faltantes.length) {
+  card.innerHTML += `<p>Aprender: ${r.faltantes.join(", ")}</p>`;
+}
