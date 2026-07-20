@@ -33,3 +33,7 @@ if (perfilGuardado) {
   area.value = perfilGuardado.area;
   skills.value = perfilGuardado.skills.join(", ");
 }
+if (!perfil.nombre || !perfil.skills.length) {
+  alert("Completa todos los campos");
+  return;
+}

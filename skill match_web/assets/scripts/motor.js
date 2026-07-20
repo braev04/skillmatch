@@ -47,3 +47,4 @@ export function crearContador() {
     return count;
   };
 }
+if (!vagas) return;
