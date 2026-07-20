@@ -1,0 +1,12 @@
+[
+  {
+    "empresa": "Google",
+    "cargo": "Frontend Dev",
+    "skills": ["html", "css", "javascript"]
+  },
+  {
+    "empresa": "Amazon",
+    "cargo": "Backend Dev",
+    "skills": ["node", "api", "sql"]
+  }
+]
