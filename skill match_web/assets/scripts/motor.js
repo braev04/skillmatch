@@ -18,14 +18,13 @@ export function calcularMatch(perfil, vaga) {
   };
 }
 
-// ✅ niveles (importante para nota)
 function clasificar(valor) {
   if (valor >= 70) return "Alta";
   if (valor >= 40) return "Media";
   return "Baja";
 }
 
-// ✅ closure
+// 🔥 closure
 export function crearContador() {
   let contador = 0;
 

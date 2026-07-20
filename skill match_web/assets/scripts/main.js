@@ -14,7 +14,6 @@ form.addEventListener("submit", async (e) => {
     skills: skills.value.split(",").map(s => s.trim())
   };
 
-  // ✅ validación correcta
   if (!perfil.nombre || !perfil.skills.length) {
     alert("Completa todos los campos");
     return;
@@ -28,13 +27,15 @@ form.addEventListener("submit", async (e) => {
   const resultados = vagas.map(v => calcularMatch(perfil, v));
 
   renderCards(resultados);
+
+  // 🔥 mejor match
+  const mejor = resultados.reduce((a, b) =>
+    a.compat > b.compat ? a : b
+  );
+
+  console.log("🏆 Mejor:", mejor);
 });
 
-// ✅ closure
+// 🔥 closure usado
 const contador = crearContador();
 console.log(contador());
-const mejor = resultados.reduce((a, b) =>
-  a.compat > b.compat ? a : b
-);
-
-console.log("Mejor opción:", mejor);
