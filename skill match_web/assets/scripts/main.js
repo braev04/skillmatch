@@ -1,6 +1,8 @@
 import { cargarVagas } from "./dados.js";
 import { calcularMatch, crearContador } from "./motor.js";
 import { renderCards } from "./ui.js";
+import { guardarPerfil, cargarPerfil } from "./storage.js";
+
 const perfilGuardado = cargarPerfil();
 if (perfilGuardado) {
   console.log("Perfil cargado:", perfilGuardado);
