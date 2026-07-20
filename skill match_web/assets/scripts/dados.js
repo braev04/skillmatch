@@ -29,3 +29,6 @@ return {
   faltantes,
   nivel: clasificar(compat)
 };
+const mejor = resultados.reduce((a, b) =>
+  a.compat > b.compat ? a : b
+);

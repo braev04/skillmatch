@@ -16,3 +16,4 @@ export function renderCards(resultados) {
     container.appendChild(card);
   });
 }
+renderCards(resultados, mejor);
