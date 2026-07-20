@@ -29,3 +29,13 @@ function clasificar(compat) {
   if (compat >= 40) return "Media";
   return "Baja";
 }
+export class VagaTech extends Vaga {
+  constructor(empresa, cargo, skills, nivel) {
+    super(empresa, cargo, skills);
+    this.nivel = nivel;
+  }
+
+  descripcion() {
+    return `${this.cargo} - ${this.nivel}`;
+  }
+}
