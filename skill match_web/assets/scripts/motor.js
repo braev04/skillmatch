@@ -39,3 +39,11 @@ export class VagaTech extends Vaga {
     return `${this.cargo} - ${this.nivel}`;
   }
 }
+export function crearContador() {
+  let count = 0;
+
+  return function () {
+    count++;
+    return count;
+  };
+}
