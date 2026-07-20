@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="SkillMatch compara tus habilidades con vacantes">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SkillMatch</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+<header>
+  <h1>SkillMatch</h1>
+</header>
+
+<main>
+
+<section>
+  <h2>Perfil</h2>
+  <form id="formPerfil">
+    <label for="nombre">Nombre</label>
+    <input id="nombre" required>
+
+    <label for="area">Área</label>
+    <input id="area" required>
+
+    <label for="skills">Habilidades (coma separadas)</label>
+    <input id="skills" required>
+
+    <button type="submit">Analizar</button>
+  </form>
+</section>
+
+<section id="resultados">
+  <p id="estado"></p>
+  <div id="cards"></div>
+</section>
+
+</main>
+
+<footer>
+  <p>Proyecto académico</p>
+</footer>
+
+<script type="module" src="js/main.js"></script>
+
+</body>
+</html>
