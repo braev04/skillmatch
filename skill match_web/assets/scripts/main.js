@@ -1,8 +1,10 @@
 import { cargarVagas } from "./dados.js";
 import { calcularMatch, crearContador } from "./motor.js";
 import { renderCards } from "./ui.js";
-import { guardarPerfil, cargarPerfil } from "./storage.js";
-
+const perfilGuardado = cargarPerfil();
+if (perfilGuardado) {
+  console.log("Perfil cargado:", perfilGuardado);
+}
 const form = document.getElementById("formPerfil");
 
 form.addEventListener("submit", async (e) => {
@@ -24,7 +26,18 @@ form.addEventListener("submit", async (e) => {
   const vagas = await cargarVagas();
   if (!vagas) return;
 
-  const resultados = vagas.map(v => calcularMatch(perfil, v));
+  const resultados = vagas
+  .map(v => calcularMatch(perfil, v))
+  .sort((a, b) => b.compat - a.compat);
+  
+  // recomendaciones
+resultados.forEach(r => {
+  if (r.nivel === "Baja") {
+    r.recomendacion = "Aprender: " + r.faltantes.join(", ");
+  } else {
+    r.recomendacion = "Buen match";
+  }
+});
 
   renderCards(resultados);
 
@@ -34,14 +47,6 @@ form.addEventListener("submit", async (e) => {
   );
 
   console.log("🏆 Mejor:", mejor);
-});
-// recomendaciones
-resultados.forEach(r => {
-  if (r.nivel === "Baja") {
-    r.recomendacion = "Aprender: " + r.faltantes.join(", ");
-  } else {
-    r.recomendacion = "Buen match";
-  }
 });
 
 // closure usado
